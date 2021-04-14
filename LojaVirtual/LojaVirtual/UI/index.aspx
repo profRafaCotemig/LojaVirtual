@@ -8,7 +8,7 @@
     <title>Loja Virtual</title>
     <link rel="stylesheet" href="..//assets/css/bootstrap.min.css" />
 
-</head>
+</head> 
 <body>
     <form id="form1" runat="server">
         <nav>
