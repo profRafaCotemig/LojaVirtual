@@ -6,14 +6,22 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+
 </head>
 <body>
     <form id="form1" runat="server">
+       <div>
+             <asp:TextBox ID="TextBoxPesq" placeholder="Pesquisar por parte do nome" runat ="server"></asp:TextBox>
+           <asp:Button ID="BtnPesquisar" Class="btn btn-lg btn-primary mb-4" runat="server" Text="Pesquisar" OnClick="BtnPesquisar_Click"/>
+          <asp:Button ID="BtnNovo" Class="btn btn-lg btn-primary mb-4" runat="server" Text="Novo Produto" OnClick="BtnNovo_Click" />
+        </div>
+        
         <div>
             <asp:GridView ID="GridProdutos" AutoGenerateColumns="false"
                 OnRowEditing="GridProdutos_RowEditing"
                 OnRowCancelingEdit="GridProdutos_RowCancelingEdit"
-                OnRowUpdated="GridProdutos_RowUpdated"
+               OnRowUpdating="GridProdutos_RowUpdating"
                 DataKeyNames="id"
                 OnRowDeleting="GridProdutos_RowDeleting" runat="server">
                 <Columns>
@@ -29,7 +37,7 @@
                             </asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="textNome" Text='<%# Eval("nome")%>' runat="server">
+                            <asp:TextBox ID="textNome" Text='<%# Bind("nome")%>' runat="server">
                             </asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
@@ -39,7 +47,7 @@
                             </asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="textDesc" Text='<%# Eval("descricao")%>' runat="server">
+                            <asp:TextBox ID="textDesc" Text='<%# Bind("descricao")%>' runat="server">
                             </asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
@@ -49,7 +57,7 @@
                             </asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="textValor" Text='<%# Eval("valor")%>' runat="server">
+                            <asp:TextBox ID="textValor" Text='<%# Bind("valor")%>' runat="server">
                             </asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
@@ -82,14 +90,15 @@
                             </asp:Label>
                         </ItemTemplate>
                         <EditItemTemplate>
-                            <asp:TextBox ID="textQuant" Text='<%# Eval("quantidadeEstoque")%>' runat="server">
+                            <asp:TextBox ID="textQuant" Text='<%# Bind("quantidadeEstoque")%>' runat="server">
                             </asp:TextBox>
                         </EditItemTemplate>
                     </asp:TemplateField>
-                   <asp:CommandField ShowEditButton="true" ButtonType="Image" DeleteText="Excluir" DeleteImageUrl="~/IMG/deletar.png" runat="server">
-                    </asp:CommandField>
+                   <asp:CommandField ShowEditButton="true" ButtonType="Image" HeaderText="Editar" EditImageUrl="~/IMG/editar.png" 
+                       CancelImageUrl="~/IMG/cancelar.png" UpdateImageUrl="~/IMG/atualizar.png" runat="server">
+                   </asp:CommandField>
 
-                    <asp:CommandField ShowDeleteButton="true" ButtonType="Image" DeleteText="Excluir" DeleteImageUrl="~/IMG/deletar.png" runat="server">
+                    <asp:CommandField ShowDeleteButton="true" ButtonType="Image" HeaderText="Excluir" DeleteImageUrl="~/IMG/deletar.png" runat="server">
                     </asp:CommandField>
 
                 </Columns>

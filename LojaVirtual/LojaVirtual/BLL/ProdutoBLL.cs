@@ -47,11 +47,8 @@ namespace LojaVirtual.BLL
         }
         public DataTable Pesquisar(string condicao) {
 
-            string sql = string.Format($@"SELECT p.id, p.nome, p.descricao, p.valor, 
-                                                 f.nome, c.nome, p.foto, p.quantidadeEstoque  
-                                        FROM produto as p, categoria as c, fornecedor as f 
-                                        WHERE p.categoriaID = c.id and p.fornecedorID = f.id 
-                                        and {condicao} ORDER BY p.id;");
+            string sql = string.Format($@"SELECT p.id , p.nome, p.descricao, p.valor, p.quantidadeEstoque, c.nome as categoria, f.nome as fornecedor, p.foto FROM produto p, categoria c, fornecedor f WHERE p.categoriaID = c.id and p.fornecedorID = f.id and " + condicao + " order by Id;");
+
             return con.ExecutarConsulta(sql);
         }
        
